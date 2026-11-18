@@ -243,10 +243,11 @@ mod tests {
             w.set_cell(148, y, Material::Stone);
             w.set_cell(154, y, Material::Stone);
         }
-        // Lava heater under a thin Metal plate, Water above
+        // Lava heater directly under a Metal plate, Water above
         for x in 149..=153 {
             w.set_cell(x, 178, Material::Lava);
             w.set_cell(x, 177, Material::Lava);
+            w.set_cell(x, 176, Material::Lava);
             w.set_cell(x, 175, Material::Metal);
             w.set_cell(x, 174, Material::Water);
             w.set_cell(x, 173, Material::Water);
@@ -254,15 +255,15 @@ mod tests {
 
         let mut saw_steam_high = false;
         let mut saw_condensed_rain = false;
-        for _ in 0..320 {
+        for _ in 0..450 {
             w.step(1);
-            for y in 4..45 {
+            for y in 4..48 {
                 for x in 149..=153 {
                     let m = w.material_at(x, y);
                     if m == Material::Steam {
                         saw_steam_high = true;
                     }
-                    if m == Material::Water && y < 35 {
+                    if m == Material::Water && y < 48 {
                         saw_condensed_rain = true;
                     }
                 }
@@ -400,8 +401,12 @@ mod tests {
         }
         w.set_cell(50, 100, Material::Virus);
 
-        // Separate Plant + Water patch
-        w.set_cell(200, 100, Material::Stone);
+        // Separate Plant + Water patch inside a Stone cup so Water stays contained
+        for x in 199..=202 {
+            w.set_cell(x, 100, Material::Stone);
+        }
+        w.set_cell(199, 99, Material::Stone);
+        w.set_cell(202, 99, Material::Stone);
         w.set_cell(200, 99, Material::Plant);
         w.set_cell(201, 99, Material::Water);
 

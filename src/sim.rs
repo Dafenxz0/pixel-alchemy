@@ -936,11 +936,9 @@ impl World {
                     }
                     Material::Steam => {
                         if y < HEIGHT / 4 {
-                            t -= 1.05;
+                            t -= 1.5;
                         } else if y < HEIGHT / 2 {
-                            t -= 0.45;
-                        } else {
-                            t -= 0.12;
+                            t -= 0.25;
                         }
                     }
                     Material::Smoke => {
@@ -1003,7 +1001,7 @@ impl World {
                     Material::Water => {
                         if t >= 100.0 {
                             self.set_cell(x, y, Material::Steam);
-                            self.temps[idx] = t.max(108.0);
+                            self.temps[idx] = t.max(160.0);
                             self.reaction_count = self.reaction_count.wrapping_add(1);
                         } else if t <= 0.0 {
                             self.set_cell(x, y, Material::Ice);
@@ -1014,7 +1012,7 @@ impl World {
                     Material::Saltwater => {
                         if t >= 106.0 {
                             self.set_cell(x, y, Material::Steam);
-                            self.temps[idx] = t.max(112.0);
+                            self.temps[idx] = t.max(162.0);
                             self.reaction_count = self.reaction_count.wrapping_add(1);
                         } else if t <= -12.0 {
                             self.set_cell(x, y, Material::Ice);

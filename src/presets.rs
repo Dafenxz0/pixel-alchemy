@@ -85,11 +85,11 @@ fn preset_volcanic_hydro_cycle(world: &mut World) {
     fill_rect(world, 8, 152, 190, HEIGHT - 10, Material::Obsidian);
     fill_rect(world, 18, 158, 178, HEIGHT - 12, Material::Lava);
 
-    // Metal heat-exchanger bridge over magma
-    fill_rect(world, 22, 144, 174, 148, Material::Metal);
+    // Metal heat-exchanger bridge resting directly on magma
+    fill_rect(world, 18, 154, 178, 158, Material::Metal);
 
     // Water reservoir on top of the heat exchanger & right basin
-    fill_rect(world, 26, 124, 170, 144, Material::Water);
+    fill_rect(world, 22, 134, 174, 154, Material::Water);
     fill_rect(world, 190, 140, WIDTH - 8, HEIGHT - 10, Material::Water);
 
     // Ice condenser shelf near upper right to accelerate rain condensation
