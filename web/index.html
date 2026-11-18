@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Alchemy — Cellular Thermodynamics &amp; Chemistry Lab</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">PIXEL ALCHEMY</span>
+        <span class="brand-sub">320×200 WASM THERMO-CA</span>
+      </div>
+
+      <div class="preset-strip" id="preset-strip" role="group" aria-label="Scene Presets">
+        <button class="preset-btn active" data-preset="0">Volcanic Hydro-Cycle</button>
+        <button class="preset-btn" data-preset="1">Chemical Reactor</button>
+        <button class="preset-btn" data-preset="2">Circuit Bomb</button>
+        <button class="preset-btn" data-preset="3">Rainforest Fire</button>
+        <button class="preset-btn" data-preset="4">Oil &amp; Acid Tank</button>
+        <button class="preset-btn" data-preset="5">Bio-Hazard Lab</button>
+      </div>
+
+      <div class="transport">
+        <button id="btn-play" class="ctrl-btn primary" title="Pause / Resume (Space)">Pause</button>
+        <button id="btn-step" class="ctrl-btn" title="Step 1 Tick (.)">+1 Step</button>
+        <div class="speed-group" role="group" aria-label="Simulation Speed">
+          <button class="speed-btn" data-speed="0.5">0.5×</button>
+          <button class="speed-btn active" data-speed="1">1×</button>
+          <button class="speed-btn" data-speed="2">2×</button>
+          <button class="speed-btn" data-speed="4">4×</button>
+        </div>
+        <button id="btn-view" class="ctrl-btn" title="Toggle Thermal IR View (T)">View: Material</button>
+        <button id="btn-reset" class="ctrl-btn" title="Reset Preset (R)">Reset</button>
+        <button id="btn-clear" class="ctrl-btn danger" title="Clear Grid (C)">Clear</button>
+      </div>
+    </header>
+
+    <div id="wasm-error" class="error-banner" hidden></div>
+
+    <main class="workspace">
+      <aside class="palette-panel" aria-label="Elements and Tools">
+        <div class="brush-box">
+          <div class="brush-head">
+            <span class="section-title">BRUSH RADIUS</span>
+            <span id="brush-size-label" class="mono">4 px</span>
+          </div>
+          <input id="brush-size" type="range" min="1" max="16" value="4" />
+          <div class="tool-grid" id="tool-grid"></div>
+        </div>
+
+        <div id="palette-groups" class="palette-groups"></div>
+      </aside>
+
+      <section class="stage-area">
+        <div class="canvas-frame" id="canvas-frame">
+          <canvas id="sim-canvas" width="320" height="200"></canvas>
+          <canvas id="overlay-canvas" width="320" height="200"></canvas>
+
+          <div class="inspector-hud" id="inspector-hud">
+            <span class="insp-coord mono" id="insp-coord">x: --- y: ---</span>
+            <span class="insp-sep">|</span>
+            <span class="insp-swatch" id="insp-swatch"></span>
+            <span class="insp-mat" id="insp-mat">Empty</span>
+            <span class="insp-phase" id="insp-phase">Void</span>
+            <span class="insp-sep">|</span>
+            <span class="insp-temp mono" id="insp-temp">22.0 °C</span>
+          </div>
+        </div>
+
+        <footer class="telemetry-bar">
+          <div class="stat">
+            <span class="stat-label">FPS</span>
+            <span class="stat-val mono" id="stat-fps">--</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">TICK</span>
+            <span class="stat-val mono" id="stat-tick">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">ACTIVE</span>
+            <span class="stat-val mono" id="stat-active">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">REACTIONS</span>
+            <span class="stat-val mono" id="stat-reactions">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">AVG TEMP</span>
+            <span class="stat-val mono" id="stat-avg-temp">22.0 °C</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">MAX TEMP</span>
+            <span class="stat-val mono" id="stat-max-temp">22.0 °C</span>
+          </div>
+          <div class="phase-meter" title="Active pixel phase distribution">
+            <div class="phase-track">
+              <span class="seg-powder" id="seg-powder"></span>
+              <span class="seg-liquid" id="seg-liquid"></span>
+              <span class="seg-gas" id="seg-gas"></span>
+              <span class="seg-solid" id="seg-solid"></span>
+            </div>
+            <div class="phase-legend mono" id="phase-legend">P:0 L:0 G:0 S:0</div>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

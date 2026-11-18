@@ -1,0 +1,15 @@
+[package]
+name = "pixel_alchemy"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Noita-style cellular pixel physics, multi-fluid dynamics, 2D thermodynamics, and chemistry compiled from Rust to WebAssembly."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
