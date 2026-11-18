@@ -937,11 +937,11 @@ impl World {
                     Material::Steam => {
                         for (nx, ny) in self.neighbors4(x, y) {
                             if self.materials[Self::idx(nx, ny)] == Material::Ice as u8 {
-                                t -= 14.0;
+                                t -= 16.0;
                             }
                         }
-                        if y < HEIGHT / 3 {
-                            t -= 1.9;
+                        if y < HEIGHT / 4 {
+                            t -= 2.6;
                         }
                     }
                     Material::Smoke => {
@@ -1004,7 +1004,7 @@ impl World {
                     Material::Water => {
                         if t >= 100.0 {
                             self.set_cell(x, y, Material::Steam);
-                            self.temps[idx] = t.max(160.0);
+                            self.temps[idx] = t.max(210.0);
                             self.reaction_count = self.reaction_count.wrapping_add(1);
                         } else if t <= 0.0 {
                             self.set_cell(x, y, Material::Ice);
@@ -1015,7 +1015,7 @@ impl World {
                     Material::Saltwater => {
                         if t >= 106.0 {
                             self.set_cell(x, y, Material::Steam);
-                            self.temps[idx] = t.max(162.0);
+                            self.temps[idx] = t.max(212.0);
                             self.reaction_count = self.reaction_count.wrapping_add(1);
                         } else if t <= -12.0 {
                             self.set_cell(x, y, Material::Ice);
