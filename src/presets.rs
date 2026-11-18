@@ -2,7 +2,7 @@
 //! electrical BFS conduction, and biological spread.
 
 use crate::material::Material;
-use crate::sim::{HEIGHT, WIDTH, World};
+use crate::sim::{World, HEIGHT, WIDTH};
 
 pub const PRESET_COUNT: u32 = 6;
 
@@ -107,7 +107,14 @@ fn preset_volcanic_hydro_cycle(world: &mut World) {
 fn preset_chemical_reactor(world: &mut World) {
     fill_rect(world, 0, HEIGHT - 8, WIDTH, HEIGHT, Material::Obsidian);
     fill_rect(world, 16, 20, 22, HEIGHT - 8, Material::Obsidian);
-    fill_rect(world, WIDTH - 22, 20, WIDTH - 16, HEIGHT - 8, Material::Obsidian);
+    fill_rect(
+        world,
+        WIDTH - 22,
+        20,
+        WIDTH - 16,
+        HEIGHT - 8,
+        Material::Obsidian,
+    );
 
     // Upper left Acid vessel with Wood drip valve
     fill_rect(world, 22, 68, 118, 72, Material::Obsidian);
@@ -211,8 +218,22 @@ fn preset_rainforest_fire(world: &mut World) {
 fn preset_oil_acid_tank(world: &mut World) {
     // Obsidian tank walls
     fill_rect(world, 40, 24, 48, HEIGHT - 12, Material::Obsidian);
-    fill_rect(world, WIDTH - 48, 24, WIDTH - 40, HEIGHT - 12, Material::Obsidian);
-    fill_rect(world, 40, HEIGHT - 18, WIDTH - 40, HEIGHT - 12, Material::Obsidian);
+    fill_rect(
+        world,
+        WIDTH - 48,
+        24,
+        WIDTH - 40,
+        HEIGHT - 12,
+        Material::Obsidian,
+    );
+    fill_rect(
+        world,
+        40,
+        HEIGHT - 18,
+        WIDTH - 40,
+        HEIGHT - 12,
+        Material::Obsidian,
+    );
 
     // Intentionally inverted/mixed fluid layers to showcase density sorting
     fill_rect(world, 48, 146, WIDTH - 48, HEIGHT - 18, Material::Oil);
@@ -232,9 +253,23 @@ fn preset_oil_acid_tank(world: &mut World) {
 /// below an Acid purge reservoir and Water mist chamber.
 fn preset_biohazard_lab(world: &mut World) {
     fill_rect(world, 20, 18, WIDTH - 20, 24, Material::Obsidian);
-    fill_rect(world, 20, HEIGHT - 14, WIDTH - 20, HEIGHT - 8, Material::Obsidian);
+    fill_rect(
+        world,
+        20,
+        HEIGHT - 14,
+        WIDTH - 20,
+        HEIGHT - 8,
+        Material::Obsidian,
+    );
     fill_rect(world, 20, 18, 26, HEIGHT - 8, Material::Obsidian);
-    fill_rect(world, WIDTH - 26, 18, WIDTH - 20, HEIGHT - 8, Material::Obsidian);
+    fill_rect(
+        world,
+        WIDTH - 26,
+        18,
+        WIDTH - 20,
+        HEIGHT - 8,
+        Material::Obsidian,
+    );
 
     // Upper purge chamber (Acid left, Water right) separated by Wood plugs
     fill_rect(world, 26, 62, WIDTH - 26, 66, Material::Obsidian);

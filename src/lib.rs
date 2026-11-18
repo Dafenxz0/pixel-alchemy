@@ -8,7 +8,7 @@ pub mod sim;
 use std::sync::Mutex;
 
 use material::Material;
-use sim::{HEIGHT, WIDTH, World};
+use sim::{World, HEIGHT, WIDTH};
 
 static WORLD: Mutex<Option<World>> = Mutex::new(None);
 

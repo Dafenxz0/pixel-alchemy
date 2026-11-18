@@ -754,8 +754,10 @@ impl World {
                 self.temps[idx] = (self.temps[idx] + heat).min(MAX_TEMP);
 
                 // Chain detonation of adjacent explosives
-                if matches!(mat, Material::Gunpowder | Material::Nitro | Material::Methane)
-                    && !(ux == blast.cx && uy == blast.cy)
+                if matches!(
+                    mat,
+                    Material::Gunpowder | Material::Nitro | Material::Methane
+                ) && !(ux == blast.cx && uy == blast.cy)
                 {
                     let sub_r = match mat {
                         Material::Nitro => 10,
