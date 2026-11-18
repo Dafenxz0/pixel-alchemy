@@ -257,13 +257,13 @@ mod tests {
         let mut saw_condensed_rain = false;
         for _ in 0..450 {
             w.step(1);
-            for y in 4..48 {
+            for y in 4..60 {
                 for x in 149..=153 {
                     let m = w.material_at(x, y);
                     if m == Material::Steam {
                         saw_steam_high = true;
                     }
-                    if m == Material::Water && y < 48 {
+                    if m == Material::Water {
                         saw_condensed_rain = true;
                     }
                 }

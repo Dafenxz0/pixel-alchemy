@@ -935,10 +935,13 @@ impl World {
                         t += (650.0 - t) * 0.15;
                     }
                     Material::Steam => {
-                        if y < HEIGHT / 4 {
-                            t -= 1.5;
-                        } else if y < HEIGHT / 2 {
-                            t -= 0.25;
+                        for (nx, ny) in self.neighbors4(x, y) {
+                            if self.materials[Self::idx(nx, ny)] == Material::Ice as u8 {
+                                t -= 14.0;
+                            }
+                        }
+                        if y < HEIGHT / 3 {
+                            t -= 1.9;
                         }
                     }
                     Material::Smoke => {

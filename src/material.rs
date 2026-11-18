@@ -248,7 +248,7 @@ const PROPS: [MaterialProps; MATERIAL_COUNT] = [
         phase: Phase::Gas,
         density: -20,
         dispersion: 3,
-        conductivity: 0.14,
+        conductivity: 0.012,
         default_temp: 165.0,
         base_color: [208, 226, 242],
         color_jitter: 16,
