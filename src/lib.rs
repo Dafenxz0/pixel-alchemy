@@ -201,7 +201,7 @@ mod tests {
         let mut sand_y = 0usize;
         for y in 140..180 {
             for x in 91..110 {
-                match w.material_at(x as i32, y as i32) {
+                match w.material_at(x, y as i32) {
                     Material::Oil => {
                         oil_y_sum += y;
                         oil_count += 1;
@@ -313,8 +313,8 @@ mod tests {
                 obsidian_intact += 1;
             }
         }
-        for i in 0..CELL_COUNT {
-            if w.materials[i] == Material::ToxicGas as u8 {
+        for &m in &w.materials {
+            if m == Material::ToxicGas as u8 {
                 toxic_or_reactions += 1;
             }
         }

@@ -205,7 +205,7 @@ fn preset_rainforest_fire(world: &mut World) {
 
     // Undergrowth
     for x in (14..206).step_by(6) {
-        fill_circle(world, x as i32, (HEIGHT - 30) as i32, 4, Material::Plant);
+        fill_circle(world, x, (HEIGHT - 30) as i32, 4, Material::Plant);
     }
 
     // Ignition on the far left tree
